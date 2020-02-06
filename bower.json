@@ -1,0 +1,33 @@
+{
+  "name": "desafio-tesseract-js-puro",
+  "homepage": "https://github.com/pydawan/desafio-tesseract-js-puro",
+  "authors": [
+    "Thiago Alexandre Martins Monteiro <thiago-amm@pge.go.gov.br>"
+  ],
+  "description": "Desafio em JavaScript do Grupo Tesseract",
+  "main": "index.html",
+  "keywords": [
+    "html",
+    "dom",
+    "javascript",
+    "css",
+    "github"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/vendors/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "4.4.1",
+    "jquery": "3.4.1"
+  },
+  "devDependencies": {
+    "bootstrap": "4.4.1",
+    "jquery": "3.4.1"
+  }
+}
