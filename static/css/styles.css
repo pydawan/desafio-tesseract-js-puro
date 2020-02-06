@@ -7,7 +7,7 @@ ul#membros {
 }
 
 ul#membros > li {
-  text-align: center;
+  text-align: left;
 }
 
 ul#membros figcaption {
@@ -16,4 +16,8 @@ ul#membros figcaption {
 
 .membro-avatar {
   width: 25%;
+}
+
+#pesquisa {
+  width: 300px;
 }
