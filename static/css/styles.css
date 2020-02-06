@@ -1,0 +1,19 @@
+.app-titulo-principal {
+  text-align: center;
+}
+
+ul#membros {
+  list-style-type: none;
+}
+
+ul#membros > li {
+  text-align: center;
+}
+
+ul#membros figcaption {
+  font-weight: bold;
+}
+
+.membro-avatar {
+  width: 25%;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="static/vendors/bower/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="static/css/styles.css" />
+  <title>Desafio do Grupo Tesseract - implementação em JS Puro</title>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="app-titulo-principal">Grupo Tesseract</h1>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="static/vendors/bower/jquery/dist/jquery.min.js"></script>
+  <script src="static/vendors/bower/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script>
+    window.onload = function (event) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            const content = document.getElementById('content');
+            const response = xhr.responseText;
+            const membrosGrupoTesseractJSON = JSON.parse(response);
+            let html = '';
+            html += '<ul id="membros">';
+            membrosGrupoTesseractJSON.forEach(function (membro) {
+              html += '<li>';
+              html += '<a class="membro-detalhes" href="' + membro.url + '">';
+              html += '<figure class="figure">';
+              html += '<img';
+              html += ' class="membro-avatar"';
+              html += ' src="' + membro.avatar_url + '"';
+              html += ' />';
+              html += '<figcaption clas="figure-caption">';
+              html += membro.login;
+              html += '</figcaption>';
+              html += '</figure>';
+              html += '</a>';
+              html += '</li>';
+            });
+            html += '</ul>'
+            content.innerHTML = html;
+
+            let linksMembroDetalhes = Array.from(
+              document.getElementsByClassName('membro-detalhes')
+            );
+
+            linksMembroDetalhes.forEach(function (linkMembroDetalhes) {
+              linkMembroDetalhes.onclick = function (event) {
+                event.preventDefault();
+                let url = this.href;
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                  if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                      let json = JSON.parse(xhr.responseText);
+                      let dadosMembro = 'INFORMAÇÕES\n\n';
+                      dadosMembro += 'Nome: ' + json.name;
+                      dadosMembro += '\n';
+                      dadosMembro += 'Quantidade de repositórios: ' + json.public_repos;
+                      dadosMembro += '\n';
+                      dadosMembro += 'Quantidade de seguidores: ' + json.followers;
+                      dadosMembro += '\n';
+                      var dataIngresso = new Date(json.created_at).toLocaleDateString();
+                      dadosMembro += 'Data de ingresso: ' + dataIngresso;
+                      alert(dadosMembro);
+                    }
+                  }
+                };
+                xhr.open('GET', url);
+                xhr.send();
+              };
+            });
+          }
+        }
+      };
+      let url = 'https://api.github.com/orgs/grupotesseract/public_members';
+      xhr.open('GET', url);
+      xhr.send();
+    };
+  </script>
+
+</body>
+
+</html>
