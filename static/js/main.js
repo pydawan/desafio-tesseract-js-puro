@@ -1,5 +1,6 @@
 window.onload = function(event) {
   var xhr = new XMLHttpRequest();
+
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
@@ -7,6 +8,7 @@ window.onload = function(event) {
         const response = xhr.responseText;
         const membrosGrupoTesseractJSON = JSON.parse(response);
         let html = '';
+
         html += '<ul id="membros">';
         membrosGrupoTesseractJSON.forEach(function(membro) {
           html += '<li id="' + membro.login + '" class="membro">';
@@ -35,6 +37,7 @@ window.onload = function(event) {
             event.preventDefault();
             let url = this.href;
             let xhr = new XMLHttpRequest();
+
             xhr.onreadystatechange = function() {
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
@@ -55,6 +58,7 @@ window.onload = function(event) {
                 }
               }
             };
+
             xhr.open('GET', url);
             xhr.send();
           };
