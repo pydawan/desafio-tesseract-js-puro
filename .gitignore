@@ -277,4 +277,4 @@ dist
 .tern-port
 
 # Arquivos de terceiros no projeto e instaláveis através do Bower
-static/vendors
+#static/vendors
